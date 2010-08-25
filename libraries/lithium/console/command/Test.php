@@ -88,7 +88,7 @@ class Test extends \lithium\console\Command {
 			'format' => 'txt'
 		));
 		$this->out('done.', 2);
-		$this->out('{:heading1}Results{:end}', 0);
+		$this->out('{:heading}Results{:end}', 0);
 		$this->out($report->render('stats'));
 
 		foreach ($report->filters() as $filter => $options) {
