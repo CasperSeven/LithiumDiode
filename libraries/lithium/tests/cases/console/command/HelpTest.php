@@ -115,32 +115,17 @@ class HelpTest extends \lithium\test\Unit {
 		$this->assertPattern("/{$expected}/", $result);
 	}
 
-	public function testApiProperty() {
+	public function testApiProperties() {
 		$help = new Help(array(
 			'request' => $this->request, 'classes' => $this->classes
 		));
 		$expected = null;
-		$result = $help->api('lithium.net.Message', 'property');
+		$result = $help->api('lithium.tests.mocks.console.command.MockCommandHelp', 'property');
 		$this->assertEqual($expected, $result);
 
-		$expected = "    --host=HOST\n        The hostname for this endpoint.";
-		$expected = preg_quote($expected);
+		$expected = "\-\-long=LONG.*\-\-blong.*\-s";
 		$result = $help->response->output;
-		$this->assertPattern("/{$expected}/", $result);
-	}
-
-	public function testApiPropertyWithName() {
-		$help = new Help(array(
-			'request' => $this->request, 'classes' => $this->classes
-		));
-		$expected = null;
-		$result = $help->api('lithium.net.Message', 'property');
-		$this->assertEqual($expected, $result);
-
-		$expected = "    --host=HOST\n        The hostname for this endpoint.";
-		$expected = preg_quote($expected);
-		$result = $help->response->output;
-		$this->assertPattern("/{$expected}/", $result);
+		$this->assertPattern("/{$expected}/s", $result);
 	}
 }
 
