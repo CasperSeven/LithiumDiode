@@ -86,7 +86,7 @@ class String {
 		}
 		return hash($options['type'], $string, $options['raw']);
 	}
-	
+
 	/**
 	 * Replaces variable placeholders inside a string with any given data. Each key
 	 * in the `$data` array corresponds to a variable placeholder name in `$str`.
