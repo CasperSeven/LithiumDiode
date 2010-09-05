@@ -40,7 +40,7 @@ class Test extends \lithium\console\Command {
 	 * }}}
 	 *
 	 * @param string $path Absolute or relative path to tests.
-	 * @return void
+	 * @return boolean Will exit with status `1` if one or more tests failed otherwise with `0`.
 	 */
 	public function run($path = null) {
 		$path = str_replace('\\', '/', $path);
@@ -73,9 +73,11 @@ class Test extends \lithium\console\Command {
 			'reporter' => 'console',
 			'format' => 'txt'
 		));
+		$stats = $report->stats();
+
 		$this->out('done.', 2);
 		$this->out('{:heading1}Results{:end}', 0);
-		$this->out($report->render('stats'));
+		$this->out($report->render('stats', $stats));
 
 		foreach ($report->filters() as $filter => $options) {
 			$data = $report->results['filters'][$filter];
@@ -84,6 +86,8 @@ class Test extends \lithium\console\Command {
 
 		$this->hr();
 		$this->nl();
+
+		return $stats['success'];
 	}
 
 	/**
