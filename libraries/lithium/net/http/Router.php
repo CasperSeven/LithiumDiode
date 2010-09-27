@@ -79,23 +79,35 @@ class Router extends \lithium\core\StaticObject {
 	 * @return array Array of routes
 	 */
 	public static function connect($template, $params = array(), $options = array()) {
-		if (!is_object($template)) {
-			if (is_string($params)) {
-				$params = static::_parseString($params, false);
-			}
-			if (isset($params[0]) && is_array($tmp = static::_parseString($params[0], false))) {
-				unset($params[0]);
-				$params = $tmp + $params;
-			}
-			$params += array('action' => 'index');
+		$params = compact('template', 'params', 'options');
+		$_configs =& static::$_configurations;
 
-			if (is_callable($options)) {
-				$options = array('handler' => $options);
+		return static::_filter(__FUNCTION__, $params, function($self, $params) use (&$_configs) {
+			$template = $params['template'];
+			$options = $params['options'];
+			$params = $params['params'];
+
+			if (!is_object($template)) {
+				$template = $self::create($template, $params, $options);
 			}
-			$class = static::$_classes['route'];
-			$template = new $class(compact('template', 'params') + $options);
+			return ($_configs[] = $template);
+		});
+	}
+
+	public static function create($template, $params = array(), $options = array()) {
+		if (is_string($params)) {
+			$params = static::_parseString($params, false);
 		}
-		return (static::$_configurations[] = $template);
+		if (isset($params[0]) && is_array($tmp = static::_parseString($params[0], false))) {
+			unset($params[0]);
+			$params = $tmp + $params;
+		}
+		$params += array('action' => 'index');
+
+		if (is_callable($options)) {
+			$options = array('handler' => $options);
+		}
+		return static::_instance('route', compact('template', 'params') + $options);
 	}
 
 	/**
