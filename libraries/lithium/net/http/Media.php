@@ -218,8 +218,8 @@ class Media extends \lithium\core\StaticObject {
 			unset(static::$_types[$type], static::$_handlers[$type]);
 		}
 		if (!$content && !$options) {
-			if (!$content = static::_types($type)) {
-				return;
+			if (!is_array($content = static::_types($type))) {
+				return $content ?: null;
 			}
 			if (strpos($type, '/')) {
 				return $content;
@@ -227,9 +227,15 @@ class Media extends \lithium\core\StaticObject {
 			if (is_array($content) && isset($content['alias'])) {
 				return static::type($content['alias']);
 			}
+			$content = (count($content) == 1) ? key($content) : array_keys($content);
 			return compact('content') + array('options' => static::_handlers($type));
 		}
 		if ($content) {
+			if (is_string($content)) {
+				$content = array($content => true);
+			} elseif (is_int(key($content))) {
+				$content = array_combine($content, array_fill(0, count($content), true));
+			}
 			static::$_types[$type] = $content;
 		}
 		static::$_handlers[$type] = $options ? ($options + $defaults) : array();
@@ -560,7 +566,7 @@ class Media extends \lithium\core\StaticObject {
 			$handler = array_filter($handler, $filter) + $handlers['default'] + $defaults;
 
 			if (isset($types[$type])) {
-				$response->headers('Content-type', current((array) $types[$type]));
+				$response->headers('Content-type', key($types[$type]));
 			}
 			$response->body($self::invokeMethod('_handle', array($handler, $data, $response)));
 		});

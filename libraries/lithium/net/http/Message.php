@@ -106,6 +106,7 @@ class Message extends \lithium\net\Message {
 		if ($type === null) {
 			return $this->_type;
 		}
+
 		if (strpos($type, '/')) {
 			$media = $this->_classes['media'];
 
