@@ -8,8 +8,8 @@
 
 namespace lithium\analysis\logger\adapter;
 
-use \SplFileInfo;
-use \DirectoryIterator;
+use SplFileInfo;
+use DirectoryIterator;
 
 /**
  * A simple log adapter that writes messages to files. By default, messages are written to

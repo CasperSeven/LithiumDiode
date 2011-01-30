@@ -87,7 +87,7 @@ class ControllerTest extends \lithium\test\Unit {
 
 namespace create_test\controllers;
 
-use \create_test\models\Post;
+use create_test\models\Post;
 
 class PostsController extends \lithium\action\Controller {
 

@@ -63,7 +63,7 @@ class TestTest extends \lithium\test\Unit {
 
 namespace create_test\tests\cases\models;
 
-use \create_test\models\Post;
+use create_test\models\Post;
 
 class PostTest extends \lithium\test\Unit {
 
@@ -113,7 +113,7 @@ class Post {
 
 namespace create_test\tests\cases\models;
 
-use \create_test\models\Post;
+use create_test\models\Post;
 
 class PostTest extends \lithium\test\Unit {
 
