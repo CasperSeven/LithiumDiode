@@ -88,3 +88,5 @@ class CrudTest extends \lithium\test\Integration {
 		$this->assertTrue($existing->delete());
 	}
 }
+
+?>
