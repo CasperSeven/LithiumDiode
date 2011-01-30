@@ -438,9 +438,8 @@ class DocumentTest extends \lithium\test\Unit {
 		$result = $doc->data('title');
 		$this->assertEqual($expected, $result);
 
-		$expected = false;
 		$result = $doc->data('permanent');
-		$this->assertEqual($expected, $result);
+		$this->assertFalse($result);
 
 		$doc = new Document();
 		$this->assertNull($doc->data('field'));
