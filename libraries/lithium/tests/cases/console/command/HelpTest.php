@@ -10,6 +10,8 @@ class HelpTest extends \lithium\test\Unit {
 
 	public $request;
 
+	public $classes = array();
+
 	protected $_backup = array();
 
 	public function setUp() {
