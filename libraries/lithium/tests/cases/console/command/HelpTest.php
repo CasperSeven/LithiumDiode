@@ -37,7 +37,7 @@ class HelpTest extends \lithium\test\Unit {
 		$result = $help->run();
 		$this->assertEqual($expected, $result);
 
-		$expected = "COMMANDS\n";
+		$expected = "COMMANDS via lithium\n";
 		$expected = preg_quote($expected);
 		$result = $help->response->output;
 		$this->assertPattern("/{$expected}/", $result);
