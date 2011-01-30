@@ -122,7 +122,7 @@ class ErrorHandler extends \lithium\core\StaticObject {
 	/**
 	 * Configure the `ErrorHandler`.
 	 *
-	 * @var array $config Configuration directives.
+	 * @param array $config Configuration directives.
 	 * @return Current configuration set.
 	 */
 	public static function config($config = array()) {
@@ -245,7 +245,7 @@ class ErrorHandler extends \lithium\core\StaticObject {
 	/**
 	 * Determine frame from the stack trace where the error/exception was first generated.
 	 *
-	 * @var array $stack Stack trace from error/exception that was produced.
+	 * @param array $stack Stack trace from error/exception that was produced.
 	 * @return string Class where error/exception was generated.
 	 */
 	protected static function _origin(array $stack) {
@@ -302,7 +302,7 @@ class ErrorHandler extends \lithium\core\StaticObject {
 	/**
 	 * Trim down a typical stack trace to class & method calls.
 	 *
-	 * @var array $stack A `debug_backtrace()`-compatible stack trace output.
+	 * @param array $stack A `debug_backtrace()`-compatible stack trace output.
 	 * @return array Returns a flat stack array containing class and method references.
 	 */
 	protected static function _trace(array $stack) {
