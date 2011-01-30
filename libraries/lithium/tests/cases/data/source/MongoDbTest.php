@@ -554,15 +554,15 @@ class MongoDbTest extends \lithium\test\Unit {
 		$result = $this->db->cast($this->_model, $data, array('schema' => $this->_schema));
 
 		$this->assertEqual(array_keys($data), array_keys($result));
-		$this->assertTrue($result['_id'] instanceOf MongoId);
+		$this->assertTrue($result['_id'] instanceof MongoId);
 		$this->assertEqual('4c8f86167675abfabd970300', (string) $result['_id']);
 
-		$this->assertTrue($result['comments'] instanceOf DocumentArray);
+		$this->assertTrue($result['comments'] instanceof DocumentArray);
 		$this->assertEqual(3, count($result['comments']));
 
-		$this->assertTrue($result['comments'][0] instanceOf MongoId);
-		$this->assertTrue($result['comments'][1] instanceOf MongoId);
-		$this->assertTrue($result['comments'][2] instanceOf MongoId);
+		$this->assertTrue($result['comments'][0] instanceof MongoId);
+		$this->assertTrue($result['comments'][1] instanceof MongoId);
+		$this->assertTrue($result['comments'][2] instanceof MongoId);
 		$this->assertEqual('4c8f86167675abfabdbe0300', (string) $result['comments'][0]);
 		$this->assertEqual('4c8f86167675abfabdbf0300', (string) $result['comments'][1]);
 		$this->assertEqual('4c8f86167675abfabdc00300', (string) $result['comments'][2]);
@@ -570,10 +570,10 @@ class MongoDbTest extends \lithium\test\Unit {
 		$this->assertEqual($data['comments'], $result['comments']->data());
 		$this->assertEqual(array('test'), $result['tags']->data());
 		$this->assertEqual(array('4c8f86167675abfabdb00300'), $result['authors']->data());
-		$this->assertTrue($result['authors'][0] instanceOf MongoId);
+		$this->assertTrue($result['authors'][0] instanceof MongoId);
 
-		$this->assertTrue($result['modified'] instanceOf MongoDate);
-		$this->assertTrue($result['created'] instanceOf MongoDate);
+		$this->assertTrue($result['modified'] instanceof MongoDate);
+		$this->assertTrue($result['created'] instanceof MongoDate);
 
 		$this->assertEqual($time, $result['modified']->sec);
 		$this->assertEqual($time, $result['created']->sec);
@@ -593,7 +593,7 @@ class MongoDbTest extends \lithium\test\Unit {
 		$result = $this->db->conditions($conditions, $query);
 
 		$this->assertEqual(array_keys($conditions), array_keys($result));
-		$this->assertTrue($result['_id'] instanceOf MongoId);
+		$this->assertTrue($result['_id'] instanceof MongoId);
 		$this->assertEqual($conditions['_id'], (string) $result['_id']);
 
 		$conditions = array('_id' => array(
@@ -601,9 +601,9 @@ class MongoDbTest extends \lithium\test\Unit {
 		));
 		$result = $this->db->conditions($conditions, $query);
 		$this->assertEqual(3, count($result['_id']['$in']));
-		$this->assertTrue($result['_id']['$in'][0] instanceOf MongoId);
-		$this->assertTrue($result['_id']['$in'][1] instanceOf MongoId);
-		$this->assertTrue($result['_id']['$in'][2] instanceOf MongoId);
+		$this->assertTrue($result['_id']['$in'][0] instanceof MongoId);
+		$this->assertTrue($result['_id']['$in'][1] instanceof MongoId);
+		$this->assertTrue($result['_id']['$in'][2] instanceof MongoId);
 
 		$conditions = array('voters' => array('$all' => array(
 			"4c8f86167675abfabdbf0300", "4c8f86167675abfabdc00300"
@@ -611,8 +611,8 @@ class MongoDbTest extends \lithium\test\Unit {
 		$result = $this->db->conditions($conditions, $query);
 
 		$this->assertEqual(2, count($result['voters']['$all']));
-		$this->assertTrue($result['voters']['$all'][0] instanceOf MongoId);
-		$this->assertTrue($result['voters']['$all'][1] instanceOf MongoId);
+		$this->assertTrue($result['voters']['$all'][0] instanceof MongoId);
+		$this->assertTrue($result['voters']['$all'][1] instanceof MongoId);
 
 		$conditions = array('$or' => array(
 			array('_id' => "4c8f86167675abfabdbf0300"),
@@ -621,8 +621,8 @@ class MongoDbTest extends \lithium\test\Unit {
 		$result = $this->db->conditions($conditions, $query);
 		$this->assertEqual(array('$or'), array_keys($result));
 		$this->assertEqual(2, count($result['$or']));
-		$this->assertTrue($result['$or'][0]['_id'] instanceOf MongoId);
-		$this->assertTrue($result['$or'][1]['guid'] instanceOf MongoId);
+		$this->assertTrue($result['$or'][0]['_id'] instanceof MongoId);
+		$this->assertTrue($result['$or'][1]['guid'] instanceof MongoId);
 	}
 
 	public function testNestedObjectCasting() {
