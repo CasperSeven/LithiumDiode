@@ -91,7 +91,9 @@ class MockDocumentSource extends \lithium\data\Source {
 					$options = $arrayType ? array('class' => 'array') + $options : $options;
 					$value = $this->item($model, $value, $options);
 				} elseif ($schema['array']) {
-					$value = $this->item($model, array($value), array('class' => 'array') + $options);
+					$value = $this->item($model, array($value), array(
+						'class' => 'array'
+					) + $options);
 				}
 			}
 			$data[$key] = $value;

@@ -266,7 +266,9 @@ abstract class Database extends \lithium\data\Source {
 
 					while ($data = $result->next()) {
 						// @hack: Fix this to support relationships
-						if ((count($columns) != count($data) && isset($columns[0])) || is_array($columns[0])) {
+						$equal = count($columns) == count($data);
+
+						if (!$equal && isset($columns[0]) || is_array($columns[0])) {
 							$columns = $columns[0];
 						}
 						$records[] = array_combine($columns, $data);
