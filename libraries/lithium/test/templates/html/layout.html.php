@@ -12,6 +12,7 @@ use lithium\util\Inflector;
 <!doctype html>
 <html>
 	<head>
+		<!-- Title intentionally left blank, forcing user agents use the current URL as title. -->
 		<title></title>
 		<?php $base = $request->env('base'); ?>
 		<meta charset="utf-8" />
