@@ -14,7 +14,7 @@ use lithium\util\Inflector;
 	<head>
 		<title></title>
 		<?php $base = $request->env('base'); ?>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<link rel="stylesheet" href="<?php echo $base; ?>/css/debug.css" />
 		<link href="<?php echo $base; ?>/favicon.ico" type="image/x-icon" rel="icon" />
 		<link href="<?php echo $base; ?>/favicon.ico" type="image/x-icon" rel="shortcut icon" />
