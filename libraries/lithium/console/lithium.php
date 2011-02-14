@@ -41,6 +41,6 @@ if ($app) {
 	lithium\core\Libraries::add('lithium');
 }
 
-exit(lithium\console\Dispatcher::run()->status);
+exit(lithium\console\Dispatcher::run(new lithium\console\Request())->status);
 
 ?>
